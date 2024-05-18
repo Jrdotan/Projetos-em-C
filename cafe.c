@@ -15,11 +15,23 @@ Participante *rear = NULL;
 
 void inserir_participante();
 void modificar_participante(int);
+void ler_participantes();
 
 int main(int argc, char const *argv[])
 {
+  char escolha;
 
-    printf("pressione A para inserir novos participantes\n");
+    printf("pressione a para inserir novos participantes ou b para ler todos os cadastrados\n");
+    scanf("%c", escolha);
+
+    switch(escolha){
+      case 'a':
+      break;
+
+      case 'b':
+      ler_participantes();
+      break;
+    }
     
 
     return 0;
@@ -144,9 +156,22 @@ switch(escolha){
   }
 }
 
-
-
-    
-
 }
+
+void ler_participantes()
+{
+  FILE *handler;
+  int id, ano;
+  char nome[200];
+  char curso[200];
+
+  handler = fopen("/Downloads/ola.txt", "rt");
+  int c;
+  while(c = fgetc(handler)!= EOF){
+    printf("%c", c);
+  }  
+  fclose(handler);
+}
+
+
 
