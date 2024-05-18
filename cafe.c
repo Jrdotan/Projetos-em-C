@@ -7,7 +7,7 @@ typedef struct participante{
     char nome[120];
     char curso[120];
     int ano;
-    struct Participante *next;
+    struct participante *next;
 }Participante;
 
 Participante *front = NULL;
@@ -49,28 +49,28 @@ this->id = rear->id + 1;
 printf("digite o primeiro nome do participante\n");
 scanf("%s", nome);
 
-this->nome[120] = nome;
+strncat(this->nome, nome, 120 - 1);
 
 char escolha;
 
 printf("escolha seu curso, digite a para DSM, b para SI ou c para GE\n");
-scanf("%c", escolha);
+scanf("%c", &escolha);
 
 switch(escolha){
     
     case 'a': 
-    strncat("DSM", curso, 120 + 1);
-    this->curso[120] = curso;
+    strncat("DSM", curso, 120 - 1);
+    strncat(this->nome, curso, 120 - 1);
     break;
 
     case 'b': 
     strncat("SI", curso, 120 + 1);
-    this->curso[120] = curso;
+     strncat(this->nome, curso, 120 - 1);
     break;
 
     case 'c': 
     strncat("GE", curso, 120 + 1);
-    this->curso[120] = curso;
+    strncat(this->nome, curso, 120 - 1);
     break;
 
 }
@@ -86,7 +86,66 @@ this->ano = ano;
    rear = rear->next;
 }
 
+
+
 void modificar_participante(int id){
+  Participante *curr;
+  char nome[120];
+  char curso[120];
+  int ano;
+  
+  curr = front;
+
+  if(curr == NULL){
+    printf("lista vazia, não existem participantes\n");
+    return;
+
+  }
+
+  while(curr->id != id){
+      curr = curr->next;
+    if(curr == NULL){
+      return;
+    }
+  }
+
+  if(curr->id != id){
+    return;
+  }
+
+  else{
+
+printf("digite o primeiro nome do participante\n");
+scanf("%s", nome);
+
+strncat(curr->nome, nome, 120 - 1);
+
+char escolha;
+
+printf("escolha seu curso, digite a para DSM, b para SI ou c para GE\n");
+scanf("%c", &escolha);
+
+switch(escolha){
+    
+    case 'a': 
+    strncat("DSM", curso, 120 - 1);
+    strncat(curr->nome, curso, 120 - 1);
+    break;
+
+    case 'b': 
+    strncat("SI", curso, 120 + 1);
+     strncat(curr->nome, curso, 120 - 1);
+    break;
+
+    case 'c': 
+    strncat("GE", curso, 120 + 1);
+    strncat(curr->nome, curso, 120 - 1);
+    break;
+  }
+}
+
+
+
     
 
 }
